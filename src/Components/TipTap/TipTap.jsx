@@ -10,6 +10,8 @@ import "./TipTap.scss";
 import { lowlight } from "lowlight/lib/core";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Preview from "../Preview/Preview";
+// eslint-disable-next-line
+import hljs from "highlight.js";
 
 function TipTap() {
     //const [html, setHTML] = useState("");
@@ -39,12 +41,7 @@ function TipTap() {
     });
     return (
         <div className="mx-auto">
-            <EditorContent
-                className="border"
-                id="lmao"
-                editor={editor}
-                ref={someRef}
-            />
+            <EditorContent className="border" editor={editor} ref={someRef} />
             <Menubar editor={editor} />
             {htmlString && <Preview htmlString={htmlString} />}
         </div>
