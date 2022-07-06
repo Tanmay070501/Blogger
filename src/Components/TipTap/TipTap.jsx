@@ -1,6 +1,6 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Menubar from "../Menubar/Menubar";
 import Underline from "@tiptap/extension-underline";
 import Image from "@tiptap/extension-image";
@@ -12,10 +12,11 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Preview from "../Preview/Preview";
 // eslint-disable-next-line
 import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-dark.css";
 
-function TipTap() {
+function TipTap({ htmlString, setHTMLString, metaData }) {
     //const [html, setHTML] = useState("");
-    const [htmlString, setHTMLString] = useState("");
+    //const [htmlString, setHTMLString] = useState("");
     const someRef = useRef();
     //console.log(html);
     const editor = useEditor({
@@ -43,7 +44,12 @@ function TipTap() {
         <div className="mx-auto">
             <EditorContent className="border" editor={editor} ref={someRef} />
             <Menubar editor={editor} />
-            {htmlString && <Preview htmlString={htmlString} />}
+            {(htmlString ||
+                metaData.title ||
+                metaData.image ||
+                metaData.desc) && (
+                <Preview htmlString={htmlString} metaData={metaData} />
+            )}
         </div>
     );
 }

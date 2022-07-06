@@ -5,3 +5,24 @@
 .special-container {
     @apply mx-auto px-4 max-w-5xl;
 }
+
+.navlink {
+    position: relative;
+}
+.navlink::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    border-bottom: 1px solid black;
+}
+
+.navlink:hover::after {
+    transition: width linear 0.2s;
+    width: 100%;
+}
+.navlink-active::after {
+    width: 100%;
+}

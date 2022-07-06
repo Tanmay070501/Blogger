@@ -1,24 +1,47 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./Layout/Layout";
-import Blog from "./pages/Blog";
+import React, { Fragment } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import useAuthCtx from "./hooks/useAuthCtx";
 import Create from "./pages/Create";
+import CreateNotLogin from "./pages/CreateNotLogin";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 function App() {
+    const { user, isAuthReady } = useAuthCtx();
+    console.log(user);
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route path="" element={<Home />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="signup" element={<Signup />} />
-                    <Route path="blog/:blogid" element={<Blog />} />
-                    <Route path="create" element={<Create />} />
-                </Route>
-            </Routes>
+            {isAuthReady && (
+                <Fragment>
+                    <Navbar user={user} />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route
+                            path="/login"
+                            element={
+                                !user ? <Login /> : <Navigate replace to="/" />
+                            }
+                        />
+                        <Route
+                            path="/signup"
+                            element={
+                                !user ? <Signup /> : <Navigate replace to="/" />
+                            }
+                        />
+                        <Route
+                            path="/create"
+                            element={user ? <Create /> : <CreateNotLogin />}
+                        />
+                    </Routes>
+                </Fragment>
+            )}
+            {!isAuthReady && (
+                <p className="text-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    Loading...
+                </p>
+            )}
         </BrowserRouter>
     );
 }
