@@ -1,4 +1,8 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../firebase/config";
 
 function useLogin() {
@@ -9,7 +13,15 @@ function useLogin() {
             console.log(error.message);
         }
     }
-    return { login };
+
+    async function registerWithGoogle() {
+        try {
+            const provider = new GoogleAuthProvider();
+            const res = await signInWithPopup(auth, provider);
+            console.log(res);
+        } catch (error) {}
+    }
+    return { login, registerWithGoogle };
 }
 
 export default useLogin;

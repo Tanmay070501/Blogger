@@ -1,15 +1,18 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
+import { FcGoogle } from "react-icons/fc";
 function Login() {
     const emailRef = useRef();
     const passRef = useRef();
-    const { login } = useLogin();
+    const { login, registerWithGoogle } = useLogin();
     function formSubmitHandler(e) {
         e.preventDefault();
         login(emailRef.current.value, passRef.current.value);
     }
-
+    function googleSignupHandler() {
+        registerWithGoogle();
+    }
     return (
         <div>
             <form
@@ -38,6 +41,19 @@ function Login() {
                     className="bg-purple-600 p-2 text-white rounded hover:bg-purple-500 disabled:bg-purple-200"
                 >
                     Log in
+                </button>
+                <div className="flex items-center gap-2 -my-6">
+                    <span className="border-b flex-grow"></span>
+                    OR
+                    <span className="border-b flex-grow"></span>
+                </div>
+                <button
+                    type="button"
+                    onClick={googleSignupHandler}
+                    className="flex items-center justify-center gap-2 border p-2"
+                >
+                    <FcGoogle className="w-6 h-6" />
+                    <span>Sign in using Google</span>
                 </button>
                 <p className="text-center -my-2">
                     New user?{" "}

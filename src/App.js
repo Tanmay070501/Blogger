@@ -32,7 +32,13 @@ function App() {
                         />
                         <Route
                             path="/create"
-                            element={user ? <Create /> : <CreateNotLogin />}
+                            element={
+                                user && user.emailIsVerified ? (
+                                    <Create />
+                                ) : (
+                                    <CreateNotLogin user={user} />
+                                )
+                            }
                         />
                     </Routes>
                 </Fragment>

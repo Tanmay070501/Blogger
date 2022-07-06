@@ -21,7 +21,7 @@ function Signup() {
                 className=" my-12 flex flex-col mx-auto max-w-sm gap-8 px-4 pt-6 pb-16 sm:border sm:rounded sm:shadow"
             >
                 <h1 className="text-3xl font-bold text-center">Sign Up</h1>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-4">
                     <input
                         className="border p-2 rounded"
                         type="text"
@@ -36,6 +36,20 @@ function Signup() {
                         required
                         ref={passRef}
                     />
+                    <input
+                        className="border p-2 rounded"
+                        type="text"
+                        placeholder="Enter your username"
+                        required
+                    />
+                    <label className="flex flex-col">
+                        <span>Upload Profile Picture :</span>
+                        <input
+                            className="border p-2 rounded"
+                            type="file"
+                            accept="image/*"
+                        />
+                    </label>
                 </div>
                 <button
                     type="submit"
@@ -54,7 +68,7 @@ function Signup() {
                     className="flex items-center justify-center gap-2 border p-2"
                 >
                     <FcGoogle className="w-6 h-6" />
-                    <span>Sign in with Google</span>
+                    <span>Sign in using Google</span>
                 </button>
                 <p className="text-center -my-2">
                     Already a user?{" "}

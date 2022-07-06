@@ -9,7 +9,10 @@ function Navbar({ user }) {
 
     return (
         <nav className="border px-8 py-2 flex items-center">
-            <Link className="text-xl font-medium first-letter:text-4xl" to="/">
+            <Link
+                className="text-xl font-medium first-letter:text-4xl md:text-2xl md:first-letter:text-5xl"
+                to="/"
+            >
                 Blogger
             </Link>
             <div className="ml-auto flex gap-3 items-center">
