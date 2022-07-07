@@ -28,7 +28,7 @@ function TipTap({ htmlString, setHTMLString, metaData }) {
                 lowlight,
             }),
         ],
-        content: "",
+        content: htmlString,
         onUpdate: ({ editor }) => {
             //setHTML(editor.getHTML());
             // console.log(document.querySelector(".ProseMirror").innerHTML);

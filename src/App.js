@@ -7,10 +7,11 @@ import CreateNotLogin from "./pages/CreateNotLogin";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Blog from "./pages/Blog";
 
 function App() {
     const { user, isAuthReady } = useAuthCtx();
-    console.log(user);
+    //console.log(user);
     return (
         <BrowserRouter>
             {isAuthReady && (
@@ -40,6 +41,7 @@ function App() {
                                 )
                             }
                         />
+                        <Route path="/blog/:blogID" element={<Blog />} />
                     </Routes>
                 </Fragment>
             )}
