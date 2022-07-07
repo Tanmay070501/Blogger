@@ -78,7 +78,7 @@ function Create() {
             const blogRef = collection(db, "blogs");
             const blogdoc = await addDoc(blogRef, {
                 title,
-                desc,
+                desc: desc.trim(),
                 content: htmlString,
                 createdAt: Timestamp.fromDate(new Date()),
                 userUid: user.uid,

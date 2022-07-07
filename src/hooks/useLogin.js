@@ -18,7 +18,9 @@ function useLogin() {
         try {
             const provider = new GoogleAuthProvider();
             const res = await signInWithPopup(auth, provider);
-            console.log(res);
+            console.log(res); /*
+            await signInWithRedirect(auth, provider);
+            await getRedirectResult(auth);*/
         } catch (error) {}
     }
     return { login, registerWithGoogle };

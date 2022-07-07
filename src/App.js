@@ -7,7 +7,7 @@ import CreateNotLogin from "./pages/CreateNotLogin";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Blog from "./pages/Blog";
+import Blog from "./pages/Blog/Blog";
 
 function App() {
     const { user, isAuthReady } = useAuthCtx();

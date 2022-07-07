@@ -8,8 +8,12 @@ function Preview({ htmlString, metaData }) {
                 Preview
             </h1>
 
-            <div className={styles.preview}>
-                {metaData.title && <h1 className="mb-4">{metaData.title}</h1>}
+            <div>
+                {metaData.title && (
+                    <h1 className="mb-4 text-7xl font-bold">
+                        {metaData.title}
+                    </h1>
+                )}
                 {metaData.image && (
                     <img
                         className={styles.mainImg}
@@ -18,12 +22,12 @@ function Preview({ htmlString, metaData }) {
                     />
                 )}
                 {metaData.desc && (
-                    <div className="py-2 border-y">
-                        <h6 className="italic">Description : </h6>
-                        <p className=" mt-4">{metaData.desc}</p>
+                    <div className="py-6 border-b mb-12">
+                        <h6 className="italic font-bold">Description : </h6>
+                        <p className=" mt-2">{metaData.desc}</p>
                     </div>
                 )}
-                <div>{parse(htmlString)}</div>
+                <div className={styles.preview}>{parse(htmlString)}</div>
             </div>
         </div>
     );
