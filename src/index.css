@@ -9,6 +9,10 @@
 .navlink {
     position: relative;
 }
+.navlink:hover {
+    color: rgb(147 51 234);
+    /* text-decoration-color: rgb(147 51 234); */
+}
 .navlink::after {
     content: "";
     display: block;
@@ -22,6 +26,7 @@
 .navlink:hover::after {
     transition: width linear 0.2s;
     width: 100%;
+    border-color: rgb(147 51 234);
 }
 .navlink-active::after {
     width: 100%;
