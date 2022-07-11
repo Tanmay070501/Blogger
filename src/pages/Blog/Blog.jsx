@@ -16,7 +16,9 @@ function Blog() {
         if (data.data()) {
             setResponse(data.data());
         } else {
-            navigate("/");
+            navigate("/", {
+                replace: true,
+            });
         }
     }, [params.blogID, navigate]);
     useEffect(() => {
