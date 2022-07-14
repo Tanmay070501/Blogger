@@ -36,3 +36,12 @@
     width: 100%;
     object-fit: cover;
 }
+
+#collapsable-nav {
+    transition: height ease-in-out 0.4s;
+}
+@media screen and (min-width: 768px) {
+    #collapsable-nav {
+        height: auto !important;
+    }
+}

@@ -1,10 +1,12 @@
 import {
+    getAdditionalUserInfo,
     GoogleAuthProvider,
     signInWithEmailAndPassword,
     signInWithPopup,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
-import { auth } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 
 function useLogin() {
     const [isPending, setIsPending] = useState(false);
@@ -26,10 +28,24 @@ function useLogin() {
         setError("");
         try {
             const provider = new GoogleAuthProvider();
-            await signInWithPopup(auth, provider);
-            /*console.log(res); /*
-            await signInWithRedirect(auth, provider);
-            await getRedirectResult(auth);*/
+            //await signInWithPopup(auth, provider);
+            const res = await signInWithPopup(auth, provider);
+            console.log(res);
+            const details = getAdditionalUserInfo(res);
+            if (details.isNewUser) {
+                console.log(details);
+                const userRef = doc(db, "users", res.user.uid);
+                await setDoc(
+                    userRef,
+                    {
+                        email: res.user.email,
+                        displayName: res.user.displayName,
+                        photoURL: res.user.photoURL,
+                        postsCount: 0,
+                    },
+                    { merge: true }
+                );
+            }
         } catch (error) {
             setError(error.message);
             //console.log(error.message);

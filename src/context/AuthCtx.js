@@ -1,5 +1,6 @@
+import { doc, getDoc } from "firebase/firestore";
 import { createContext, useEffect, useReducer } from "react";
-import { auth } from "../firebase/config";
+import { auth, db } from "../firebase/config";
 
 const AuthCtx = createContext();
 const AUTH_IS_READY = "AUTH_IS_READY";
@@ -9,6 +10,12 @@ function authReducer(state, action) {
         return {
             ...state,
             isAuthReady: action.payload.isAuthReady,
+            user: action.payload.user,
+        };
+    }
+    if (action.type === "SIGN_UP") {
+        return {
+            ...state,
             user: action.payload.user,
         };
     }
@@ -22,10 +29,11 @@ export function AuthCtxProvider({ children }) {
     });
     const value = {
         ...state,
+        dispatch,
     };
 
     useEffect(() => {
-        const unsub = auth.onAuthStateChanged((user) => {
+        const unsub = auth.onAuthStateChanged(async (user) => {
             let appUser = user;
             if (user) {
                 appUser = {
@@ -35,6 +43,31 @@ export function AuthCtxProvider({ children }) {
                     userPhoto: user.photoURL,
                     emailIsVerified: user.emailVerified,
                 };
+                /*if (!user.username || !user.userPhoto) {
+                    const docRef = doc(db, "users", user.uid);
+                    const data = await getDoc(docRef);
+                    if (data.data()) {
+                        const userData = data.data();
+                        appUser = {
+                            ...appUser,
+                            userPhoto: userData.photoURL,
+                            username: userData.displayName,
+                        };
+                        dispatch({
+                            type: AUTH_IS_READY,
+                            payload: {
+                                user: appUser,
+                                isAuthReady: true,
+                            },
+                        });
+                    }
+                }*/
+                /*const metadata = auth.currentUser.metadata;
+                if (metadata.creationTime === metadata.lastSignInTime) {
+                    console.log("new user");
+                } else {
+                    console.log("already a user");
+                }*/
             }
             dispatch({
                 type: AUTH_IS_READY,

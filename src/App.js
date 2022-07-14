@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./Components/Navbar";
 import useAuthCtx from "./hooks/useAuthCtx";
 import Create from "./pages/Create";
 import CreateNotLogin from "./pages/CreateNotLogin";
@@ -8,6 +7,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Blog from "./pages/Blog/Blog";
+import User from "./pages/User";
+import ResponsiveNav from "./Components/ResponsiveNav";
 
 function App() {
     const { user, isAuthReady } = useAuthCtx();
@@ -16,7 +17,7 @@ function App() {
         <BrowserRouter>
             {isAuthReady && (
                 <Fragment>
-                    <Navbar user={user} />
+                    <ResponsiveNav user={user} />
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route
@@ -42,6 +43,7 @@ function App() {
                             }
                         />
                         <Route path="/blog/:blogID" element={<Blog />} />
+                        <Route path="/user/:userID" element={<User />} />
                     </Routes>
                 </Fragment>
             )}

@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { db } from "../../firebase/config";
 import parse from "html-react-parser";
 import "highlight.js/styles/atom-one-dark.css";
@@ -31,13 +31,27 @@ function Blog() {
             )}
             {response.mainImgURL && (
                 <img
-                    className="mainImg"
+                    className="mainImg border"
                     src={response.mainImgURL}
                     alt="mainImg"
                 />
             )}
+            {response.author && (
+                <div className="py-4">
+                    <p>
+                        Author:{" "}
+                        <Link
+                            className="hover:underline"
+                            to={`/user/${response.authorUid}`}
+                        >
+                            {response.author}
+                        </Link>
+                    </p>
+                </div>
+            )}
+
             {response.desc && (
-                <div className="py-6 border-b mb-12">
+                <div className="py-4 border-y mb-12">
                     <h6 className="italic font-bold">Description : </h6>
                     <p className=" mt-2">{response.desc}</p>
                 </div>

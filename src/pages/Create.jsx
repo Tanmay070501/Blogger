@@ -1,4 +1,11 @@
-import { addDoc, collection, doc, setDoc, Timestamp } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    doc,
+    increment,
+    setDoc,
+    Timestamp,
+} from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import TipTap from "../Components/TipTap/TipTap";
 import { db, storage } from "../firebase/config";
@@ -81,7 +88,8 @@ function Create() {
                 desc: desc.trim(),
                 content: htmlString,
                 createdAt: Timestamp.fromDate(new Date()),
-                userUid: user.uid,
+                authorUid: user.uid,
+                author: user.username,
                 mainImgURL: "",
             });
             const ImageUploadPath = `blogImages/${blogdoc.id}/${ImageRef.current.files[0].name}`;
@@ -96,6 +104,12 @@ function Create() {
                 {
                     merge: true,
                 }
+            );
+            const userDocRef = doc(db, "users", user.uid);
+            await setDoc(
+                userDocRef,
+                { postsCount: increment(1) },
+                { merge: true }
             );
             navigate(`/blog/${blogdoc.id}`);
         } catch (error) {
