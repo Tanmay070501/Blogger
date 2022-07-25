@@ -1,6 +1,5 @@
-import { doc, getDoc } from "firebase/firestore";
 import { createContext, useEffect, useReducer } from "react";
-import { auth, db } from "../firebase/config";
+import { auth } from "../firebase/config";
 
 const AuthCtx = createContext();
 const AUTH_IS_READY = "AUTH_IS_READY";
