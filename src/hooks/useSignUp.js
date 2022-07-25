@@ -25,7 +25,7 @@ export default function useSignUp() {
                 email,
                 pass
             );
-            console.log(response.user);
+            //console.log(response.user);
             const imgUploadPath = `userImg/${response.user.uid}/${profileImg.name}`;
             const imgUploadRef = ref(storage, imgUploadPath);
             await uploadBytes(imgUploadRef, profileImg);

@@ -32,7 +32,7 @@ function User() {
                 <div className="special-container my-24 text-lg sm:text-xl">
                     <div>
                         <div className="flex flex-col items-center justify-center sm:flex-row gap-12">
-                            <div className="h-44 w-44 rounded-full overflow-hidden">
+                            <div className="h-44 w-44 rounded-full overflow-hidden border">
                                 <img
                                     className="h-full w-full object-cover object-center"
                                     src={response.photoURL}
@@ -57,14 +57,20 @@ function User() {
                                     </a>
                                 </p>
                                 <p>
-                                    <span>No. of Posts: </span>
+                                    <span className="font-bold">
+                                        No. of Posts:{" "}
+                                    </span>
                                     {postCount}
                                 </p>
                             </div>
                         </div>
                         <div className="my-8">
                             <h2>POSTS:</h2>
-                            <UserPosts uid={params.userID} />
+                            {postCount ? (
+                                <UserPosts uid={params.userID} />
+                            ) : (
+                                <p className="text-center">No posts yet...</p>
+                            )}
                         </div>
                     </div>
                 </div>

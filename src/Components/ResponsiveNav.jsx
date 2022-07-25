@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { FiMenu, FiX, FiLogOut, FiUser } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 const navitem = [
     { path: "/", name: "Home" },
@@ -77,32 +77,44 @@ function ResponsiveNav({ user }) {
                     {navitem.map((item, index) => {
                         return (
                             <li className=" flex flex-col" key={index}>
-                                <Link
-                                    className="inline-block  p-4 md:p-0 hover:text-purple-600"
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? "inline-block  p-4 md:p-0 text-purple-400 hover:text-purple-600"
+                                            : "inline-block  p-4 md:p-0 hover:text-purple-600"
+                                    }
                                     to={item.path}
                                 >
                                     {item.name}
-                                </Link>
+                                </NavLink>
                             </li>
                         );
                     })}
                     {!user && (
                         <Fragment>
                             <li className="flex flex-col">
-                                <Link
-                                    className="inline-block  p-4 md:p-0 hover:text-purple-600"
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? "inline-block  p-4 md:p-0 text-purple-400 hover:text-purple-600"
+                                            : "inline-block  p-4 md:p-0 hover:text-purple-600"
+                                    }
                                     to="/login"
                                 >
                                     Log in
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className=" flex flex-col">
-                                <Link
-                                    className="inline-block  p-4 md:p-0 hover:text-purple-600"
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? "inline-block  p-4 md:p-0 text-purple-400 hover:text-purple-600"
+                                            : "inline-block  p-4 md:p-0 hover:text-purple-600"
+                                    }
                                     to={"/signup"}
                                 >
                                     Sign up
-                                </Link>
+                                </NavLink>
                             </li>
                         </Fragment>
                     )}

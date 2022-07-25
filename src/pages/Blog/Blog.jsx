@@ -37,15 +37,21 @@ function Blog() {
                 />
             )}
             {response.author && (
-                <div className="py-4">
+                <div className="py-4 flex justify-between items-center">
                     <p>
                         Author:{" "}
                         <Link
-                            className="hover:underline"
+                            className="font-bold hover:underline"
                             to={`/user/${response.authorUid}`}
                         >
                             {response.author}
                         </Link>
+                    </p>
+                    <p>
+                        Published at:{" "}
+                        <span className="font-bold">
+                            {response.createdAt.toDate().toDateString()}
+                        </span>
                     </p>
                 </div>
             )}

@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 function UserPosts({ uid }) {
     const [userBlogs, setUserBlogs] = useState([]);
     const [lastDoc, setLastDoc] = useState(null);
-
     console.log(userBlogs);
     const deleteHandler = async (id) => {
         try {
@@ -102,7 +101,7 @@ function UserPosts({ uid }) {
         <div className="my-4 flex flex-col gap-6">
             {userBlogs.map((item) => {
                 return (
-                    <div key={item.id} className="border flex flex-col pb-4">
+                    <div key={item.id} className="border-2 flex flex-col pb-4">
                         <Link
                             className="flex flex-wrap gap-4 hover:underline"
                             to={`/blog/${item.id}`}
@@ -132,12 +131,15 @@ function UserPosts({ uid }) {
                     </div>
                 );
             })}
-            <button
-                onClick={fetchMoreData}
-                className="bg-purple-600 p-2 rounded self-center text-white"
-            >
-                Load more
-            </button>
+            {lastDoc && (
+                <button
+                    onClick={fetchMoreData}
+                    className="bg-purple-600 p-2 rounded self-center text-white"
+                >
+                    Load more
+                </button>
+            )}
+            {!lastDoc && <p className="text-center">No more posts...</p>}
         </div>
     );
 }

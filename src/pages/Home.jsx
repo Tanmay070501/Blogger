@@ -15,7 +15,8 @@ import { db } from "../firebase/config";
 function Home() {
     const [blogs, setBlogs] = useState([]);
     const [lastDoc, setLastDoc] = useState(null);
-    console.log(blogs);
+    const [zeroPost, setZeroPost] = useState(true);
+    //console.log(blogs);
     useEffect(() => {
         async function fetchData() {
             try {
@@ -38,6 +39,9 @@ function Home() {
                         ];
                     //console.log("last", lastVisible);
                     setLastDoc(lastVisible);
+                    setZeroPost(false);
+                } else {
+                    setZeroPost(true);
                 }
             } catch (err) {
                 console.log(err.message);
@@ -88,6 +92,9 @@ function Home() {
                 >
                     load more
                 </button>
+            )}
+            {!lastDoc && !zeroPost && (
+                <p className="text-center my-4">No more posts...</p>
             )}
         </div>
     );
