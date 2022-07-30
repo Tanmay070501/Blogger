@@ -29,6 +29,7 @@ function Menubar({ editor }) {
     return (
         <div className="btn-grp border p-2">
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 className={
                     editor.isActive("bold") ? "is-active tooltip" : "tooltip"
@@ -38,6 +39,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Bold</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleItalic().run()}
                 className={
                     editor.isActive("italic") ? "is-active tooltip" : "tooltip"
@@ -47,6 +49,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Italic</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleUnderline().run()}
                 className={
                     editor.isActive("underline")
@@ -58,6 +61,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Underline</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleStrike().run()}
                 className={
                     editor.isActive("strike") ? "is-active tooltip" : "tooltip"
@@ -67,6 +71,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Strike through</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleCode().run()}
                 className={
                     editor.isActive("code") ? "is-active tooltip" : "tooltip"
@@ -76,6 +81,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">code</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().setParagraph().run()}
                 className={
                     editor.isActive("paragraph")
@@ -87,6 +93,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">paragraph</span>
             </button>
             <button
+                type="button"
                 onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 1 }).run()
                 }
@@ -97,6 +104,7 @@ function Menubar({ editor }) {
                 <span className="text-base font-bold">H1</span>
             </button>
             <button
+                type="button"
                 onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 2 }).run()
                 }
@@ -107,6 +115,7 @@ function Menubar({ editor }) {
                 <span className="text-base font-bold">H2</span>
             </button>
             <button
+                type="button"
                 onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 3 }).run()
                 }
@@ -117,6 +126,7 @@ function Menubar({ editor }) {
                 <span className="text-base font-bold">H3</span>
             </button>
             <button
+                type="button"
                 onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 4 }).run()
                 }
@@ -127,6 +137,7 @@ function Menubar({ editor }) {
                 <span className="text-base font-bold">H4</span>
             </button>
             <button
+                type="button"
                 onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 5 }).run()
                 }
@@ -137,6 +148,7 @@ function Menubar({ editor }) {
                 <span className="text-base font-bold">H5</span>
             </button>
             <button
+                type="button"
                 onClick={() =>
                     editor.chain().focus().toggleHeading({ level: 6 }).run()
                 }
@@ -147,6 +159,7 @@ function Menubar({ editor }) {
                 <span className="text-base font-bold">H6</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
                 className={
                     editor.isActive("bulletList")
@@ -158,6 +171,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Unordered List</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
                 className={
                     editor.isActive("orderedList")
@@ -169,6 +183,7 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Ordered List</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleBlockquote().run()}
                 className={
                     editor.isActive("blockquote")
@@ -180,11 +195,13 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Blockquote</span>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().setHorizontalRule().run()}
             >
                 <span className="text-base font-bold">Horizontal rule</span>
             </button>
             <button
+                type="button"
                 className="tooltip"
                 onClick={() => editor.chain().focus().undo().run()}
             >
@@ -192,13 +209,14 @@ function Menubar({ editor }) {
                 <span className="tooltiptext">Undo</span>
             </button>
             <button
+                type="button"
                 className="tooltip"
                 onClick={() => editor.chain().focus().redo().run()}
             >
                 <FaRedo className="w-4 h-4" />
                 <span className="tooltiptext">Redo</span>
             </button>
-            <button onClick={addImage}>
+            <button type="button" onClick={addImage}>
                 <FaFileImage className="w-4 h-4" />
             </button>
         </div>

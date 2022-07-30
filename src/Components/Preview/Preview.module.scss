@@ -7,7 +7,12 @@
     ol {
         padding: 0 1rem;
     }
-
+    ul {
+        list-style-type: disc;
+    }
+    ol {
+        list-style-type: decimal;
+    }
     h1,
     h2,
     h3,
