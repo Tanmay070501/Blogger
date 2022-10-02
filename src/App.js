@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import useAuthCtx from "./hooks/useAuthCtx";
 import Create from "./pages/Create";
 import CreateNotLogin from "./pages/CreateNotLogin";
@@ -13,8 +13,12 @@ import ResponsiveNav from "./Components/ResponsiveNav";
 function App() {
     const { user, isAuthReady } = useAuthCtx();
     //console.log(user);
+    const location = useLocation();
+    useEffect(() => {
+        document.title = "Blogger";
+    }, [location]);
     return (
-        <BrowserRouter>
+        <Fragment>
             {isAuthReady && (
                 <Fragment>
                     <ResponsiveNav user={user} />
@@ -52,7 +56,7 @@ function App() {
                     Loading...
                 </p>
             )}
-        </BrowserRouter>
+        </Fragment>
     );
 }
 

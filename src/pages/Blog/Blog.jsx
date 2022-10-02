@@ -7,7 +7,12 @@ import "highlight.js/styles/atom-one-dark.css";
 import "./Blog.scss";
 function Blog() {
     const [response, setResponse] = useState(false);
-    console.log(response);
+    //console.log(response);
+    useEffect(() => {
+        if (response && response.title) {
+            document.title = response.title;
+        }
+    }, [response]);
     const params = useParams();
     const navigate = useNavigate();
     const fetchBlog = useCallback(async () => {
