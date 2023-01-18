@@ -10,6 +10,7 @@ import Blog from "./pages/Blog/Blog";
 import User from "./pages/User";
 import ResponsiveNav from "./Components/ResponsiveNav";
 import Search from "./pages/Search";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
     const { user, isAuthReady } = useAuthCtx();
@@ -35,6 +36,16 @@ function App() {
                             path="/signup"
                             element={
                                 !user ? <Signup /> : <Navigate replace to="/" />
+                            }
+                        />
+                        <Route
+                            path="/forgot"
+                            element={
+                                !user ? (
+                                    <ForgotPassword />
+                                ) : (
+                                    <Navigate replace to="/" />
+                                )
                             }
                         />
                         <Route

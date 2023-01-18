@@ -34,7 +34,11 @@ function Search() {
     };
     const searchHandler = (event) => {
         event.preventDefault();
-        if (search.trim().length === 0) return;
+        if (search.trim().length === 0) {
+            setIsSearched("");
+            setBlogs([]);
+            return;
+        }
         setLoading(true);
         searchBlogs(search);
         setLoading(false);
@@ -64,24 +68,22 @@ function Search() {
                     </button>
                 </form>
                 {loading && <p className="text-center my-4">Loading...</p>}
-                {!loading && (
-                    <>
-                        {isSearched && (
-                            <p className="text-center my-4">
-                                Result for "{isSearched}" :
-                            </p>
-                        )}
+                <>
+                    {isSearched && (
+                        <p className="text-center my-4">
+                            Result for "{isSearched}" :
+                        </p>
+                    )}
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                            {blogs.map((data) => {
-                                return <BlogCard key={data.id} data={data} />;
-                            })}
-                            {blogs.length === 0 && isSearched && (
-                                <p>No result Found</p>
-                            )}
-                        </div>
-                    </>
-                )}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                        {blogs.map((data) => {
+                            return <BlogCard key={data.id} data={data} />;
+                        })}
+                        {blogs.length === 0 && isSearched && (
+                            <p>No result Found</p>
+                        )}
+                    </div>
+                </>
             </div>
         </>
     );

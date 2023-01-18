@@ -123,6 +123,25 @@ function Signup() {
                 >
                     Sign Up
                 </button>
+                <p className="text-center flex justify-between -mt-4">
+                    <span>
+                        Already a user?{" "}
+                        <Link
+                            className="hover:underline text-blue-600"
+                            to="/login"
+                        >
+                            Login
+                        </Link>
+                    </span>
+                    <span>
+                        <Link
+                            className="hover:underline text-blue-600"
+                            to={"/forgot"}
+                        >
+                            Forgot Password
+                        </Link>
+                    </span>
+                </p>
                 <div className="flex items-center gap-2 -my-6">
                     <span className="border-b flex-grow"></span>
                     OR
@@ -136,12 +155,6 @@ function Signup() {
                     <FcGoogle className="w-6 h-6" />
                     <span>Sign in using Google</span>
                 </button>
-                <p className="text-center -my-2">
-                    Already a user?{" "}
-                    <Link className="hover:underline text-blue-600" to="/login">
-                        Login
-                    </Link>
-                </p>
             </form>
         </div>
     );
