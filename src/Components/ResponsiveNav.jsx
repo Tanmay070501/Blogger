@@ -5,6 +5,7 @@ import useLogout from "../hooks/useLogout";
 const navitem = [
     { path: "/", name: "Home" },
     { path: "/create", name: "Create New Blog" },
+    { path: "/search", name: "Search" },
 ];
 
 function ResponsiveNav({ user }) {

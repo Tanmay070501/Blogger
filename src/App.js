@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Blog from "./pages/Blog/Blog";
 import User from "./pages/User";
 import ResponsiveNav from "./Components/ResponsiveNav";
+import Search from "./pages/Search";
 
 function App() {
     const { user, isAuthReady } = useAuthCtx();
@@ -48,6 +49,7 @@ function App() {
                         />
                         <Route path="/blog/:blogID" element={<Blog />} />
                         <Route path="/user/:userID" element={<User />} />
+                        <Route path="/search" element={<Search />} />
                     </Routes>
                 </Fragment>
             )}
